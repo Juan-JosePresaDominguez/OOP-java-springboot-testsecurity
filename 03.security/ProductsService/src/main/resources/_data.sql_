@@ -1,0 +1,10 @@
+INSERT INTO products (id, name,serial) VALUES
+(1, 'Magazine','111-111-1111'),
+(2, 'Toothpaste','222-222-2222'),
+(3, 'Travel','333-333-3331'),
+(4, 'Candy','444-444-4441'),
+(5, 'Book','555-555-5551');
+
+INSERT INTO users (id, email, password, role) VALUES
+(1, 'r@r.com','mypass','admin');
+

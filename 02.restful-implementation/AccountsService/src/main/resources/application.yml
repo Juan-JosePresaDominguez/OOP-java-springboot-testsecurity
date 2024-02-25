@@ -1,0 +1,44 @@
+spring:
+  application.name: AccountsService
+  profiles.active: dev
+
+---
+spring:
+  config.activate.on-profile: dev
+  sql.init.mode: always
+  datasource:
+    url: "jdbc:h2:mem:accountsdb"
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+      generate-ddl: true
+    defer-datasource-initialization: true
+  h2:
+    console.enabled: true
+    console.path: /h2-ui
+
+server.port: 9900
+
+---
+spring:
+  config.activate.on-profile: prod
+  sql.init.mode: always
+  datasource:
+    url: "jdbc:mysql://127.0.0.1:3306/accounts_db"
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: account_user
+    password: acc123
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    hibernate:
+      ddl-auto: update
+      generate-ddl: true
+    defer-datasource-initialization: true
+
+server.port: 9943
