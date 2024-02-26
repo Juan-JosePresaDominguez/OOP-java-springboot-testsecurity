@@ -14,7 +14,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-@Sql(value = "classpath:testing.sql")
+//@Sql(value = "classpath:testing.sql")
 //@Sql(value = "classpath:testing_clean.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 //@TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -47,6 +47,19 @@ class ProductServiceControllerTest {
 
         assertThat(response.getStatusCode().value()).isEqualTo(HttpStatus.CREATED.value());
         assertThat(response.getBody().getId()).isGreaterThan(0);
+
+    }
+
+    @Test
+    @Order(1)
+    void givenProducts_whenInVaildCreateProduct_thenException() {
+        Product newProduct = new Product(null, "Nuevo producto", "123-123-123x");
+
+        Assertions.assertThrows(RuntimeException.class, () -> {
+            ResponseEntity<Product> response = controller.createProduct(newProduct);
+
+        });
+
 
     }
 }
