@@ -78,9 +78,11 @@ public class AccountService implements IAccountService {
     @Override
     public void deleteAccountsUsingOwnerId(Long ownerId) {
         List<Account> accounts = accountRepository.findByOwnerId(ownerId);
-        for (Account account : accounts) {
-            this.accountRepository.delete(account);
-        }
+        if (accounts != null && accounts.size() > 0) {
+            for (Account account : accounts) {
+                this.accountRepository.delete(account);
+            }
+        } else throw new AccountNotfoundException("No accoutns for:"+ownerId);
     }
 
 

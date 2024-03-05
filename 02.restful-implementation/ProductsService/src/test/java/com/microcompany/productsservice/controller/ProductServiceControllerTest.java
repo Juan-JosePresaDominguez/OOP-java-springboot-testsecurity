@@ -51,7 +51,7 @@ class ProductServiceControllerTest {
     }
 
     @Test
-    @Order(1)
+    @Order(3)
     void givenProducts_whenInVaildCreateProduct_thenException() {
         Product newProduct = new Product(null, "Nuevo producto", "123-123-123x");
 

@@ -18,7 +18,13 @@ import java.util.Map;
 public class ConfigExceptionController {
     @ExceptionHandler(value = GlobalException.class)
     public ResponseEntity<Object> handleGlobalException(GlobalException exception) {
-        return new ResponseEntity<>("Global: "+exception.getMessage(), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("Global: " + exception.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+
+    @ExceptionHandler(AccountNotfoundException.class)
+    ResponseEntity<Object> noSuchElementExceptionHandler(AccountNotfoundException exception) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
     }
 
     /*@ExceptionHandler(value = AccountNotfoundException.class)

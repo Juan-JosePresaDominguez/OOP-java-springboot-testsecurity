@@ -54,7 +54,6 @@ class ProductServiceControllerTest_MockMvc {
                         .accept(MediaType.APPLICATION_JSON)
                 )
                 .andExpect(status().isCreated())
-                //.andExpect(status().isOk())     // --> Caso erróneo: java.lang.AssertionError: Status expected:<200> but was:<201>
                 .andExpect(jsonPath("$.id").exists())
                 .andExpect(jsonPath("$.id", is(greaterThanOrEqualTo(1))));
 
@@ -62,7 +61,7 @@ class ProductServiceControllerTest_MockMvc {
 
     @Test
     @Order(3)
-    void givenProducts_whenValidCreateProduct_thenBadRequest() throws Exception {
+    void givenProducts_whenInVaildCreateProduct_thenBadRequest() throws Exception {
         Product newProduct = new Product(null, "Nuevo producto", "123-123-123X");
 
         mvc.perform(post("/products")
